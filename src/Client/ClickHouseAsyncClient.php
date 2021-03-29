@@ -13,19 +13,23 @@ interface ClickHouseAsyncClient
     /**
      * @see Output hack for IDE to preserve `use`
      *
+     * @param Format<O>                       $outputFormat
      * @param array<string, float|int|string> $requestParameters
      *
-     * @psalm-template O of Output
-     * @psalm-param    Format<O> $outputFormat
+     * @return    PromiseInterface<O>
+     *
+     * @template O of Output
      */
     public function select(string $sql, Format $outputFormat, array $requestParameters = []) : PromiseInterface;
 
     /**
-     * @param array<string, float|int|string> $requestParameters
      * @param array<string, mixed>            $queryParameters
+     * @param Format<O>                       $outputFormat
+     * @param array<string, float|int|string> $requestParameters
      *
-     * @psalm-template O of Output
-     * @psalm-param    Format<O> $outputFormat
+     * @return    PromiseInterface<O>
+     *
+     * @template O of Output
      */
     public function selectWithParameters(
         string $query,
